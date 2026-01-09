@@ -1,0 +1,18 @@
+opencollection: 1.0.0
+info:
+  name: "Sample Workspace"
+  type: workspace
+
+collections:
+  - name: "GitHub REST API"
+    path: "github-rest-api-collection"
+  - name: "jsonwebtoken"
+    path: "jsonwebtoken/jsonwebtoken"
+  - name: "Hugging Face API Interactions"
+    path: "Bruno-HuggingFace"
+  - name: "External Library - Zod"
+    path: "external-libraries-zod"
+
+specs:
+
+docs: ''
