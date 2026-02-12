@@ -1,0 +1,50 @@
+info:
+  name: Validating Pet Name and Type
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseURL}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |+
+      {
+        "users": [
+          { "name": "Bruno", "type": "dog" },
+          { "name": "Luna", "type": "cat" },
+          { "name": "Ziggy", "type": "bird" }
+        ]
+      }
+
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        const { z } = require("zod");
+
+        const response = res.getBody(); // Already parsed
+
+        const UserSchema = z.object({
+          name: z.string(),
+          type: z.enum(["dog", "cat", "bird"])
+        });
+
+        const Schema = z.object({
+          users: z.array(UserSchema)
+        });
+
+        test("Validate response schema with zod", () => {
+          Schema.parse(response); // This will throw if invalid and mark test as failed
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

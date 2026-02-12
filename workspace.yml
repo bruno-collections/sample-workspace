@@ -6,12 +6,12 @@ info:
 collections:
   - name: "GitHub REST API"
     path: "github-rest-api-collection"
-  - name: "jsonwebtoken"
-    path: "jsonwebtoken/jsonwebtoken"
-  - name: "Hugging Face API Interactions"
-    path: "Bruno-HuggingFace"
-  - name: "External Library - Zod"
-    path: "external-libraries-zod"
+  - name: "TestFsSystem"
+    path: "collections/TestFsSystem"
+  - name: "Working with JSON - Testing and Access of Arrays and Objects"
+    path: "../Working with JSON - Testing and Access of Arrays and Objects copy"
+  - name: "test"
+    path: "collections/test"
 
 specs:
 

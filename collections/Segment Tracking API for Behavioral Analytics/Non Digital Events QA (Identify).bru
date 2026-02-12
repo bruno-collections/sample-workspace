@@ -1,0 +1,31 @@
+meta {
+  name: Non Digital Events QA (Identify)
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://api.segment.io/v1/identify
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: aUhTRk5nTHBkUU1HWHRYdTc5RTdHRUVoSFF0aW5BaGo=
+}
+
+body:json {
+  {
+    "traits": {
+      "debitCardExpiration":"2024-10-31T00:00:00.000Z",
+      "addressLastUpdated":"",
+      "last4acct":"1234"
+    },
+    "type": "identify",
+    "userId": "SHTESTUSER"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

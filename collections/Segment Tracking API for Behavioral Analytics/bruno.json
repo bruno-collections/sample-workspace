@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Segment Tracking API for Behavioral Analytics",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

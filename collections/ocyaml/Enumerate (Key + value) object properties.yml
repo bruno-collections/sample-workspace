@@ -1,0 +1,198 @@
+info:
+  name: Enumerate (Key + value) object properties
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}"
+  body:
+    type: json
+    data: |-
+      {
+        "items": [
+          {
+            "orderID": "0000001211",
+            "orderInvoiceNo": "1234567",
+            "OrderBlocks": [
+              {
+                "onlLineId": 1,
+                "onlProductCode": "001"   
+              },
+              {
+                "onlLineId": 2,
+                "onlProductCode": "012"   
+              },{
+                "onlLineId": 3,
+                "onlProductCode": "013"   
+              },{
+                "onlLineId": 4,
+                "onlProductCode": "014"   
+              }
+            ]
+          }
+        ]
+      }
+
+runtime:
+  variables:
+    - name: baseUrl
+      value: https://www.postman-echo.com/post
+  scripts:
+    - type: tests
+      code: |-
+        test("array of all properties", () => {
+          const jsonData = res.getBody();
+          const orderBlock = jsonData?.data?.items?.[0]?.OrderBlocks?.[0];
+
+          if (!orderBlock) {
+            console.warn("OrderBlocks[0] not found.");
+            return;
+          }
+
+          const keysArr = [];
+
+          for (const property in orderBlock) {
+            if (Object.prototype.hasOwnProperty.call(orderBlock, property)) {
+              keysArr.push(property);
+            }
+          }
+
+          console.log("Keys in OrderBlocks[0]:", keysArr);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: example
+    request:
+      url: "{{baseUrl}}"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "items": [
+              {
+                "orderID": "0000001211",
+                "orderInvoiceNo": "1234567",
+                "OrderBlocks": [
+                  {
+                    "onlLineId": 1,
+                    "onlProductCode": "001"   
+                  },
+                  {
+                    "onlLineId": 2,
+                    "onlProductCode": "012"   
+                  },{
+                    "onlLineId": 3,
+                    "onlProductCode": "013"   
+                  },{
+                    "onlLineId": 4,
+                    "onlProductCode": "014"   
+                  }
+                ]
+              }
+            ]
+          }
+    response:
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 23 Jan 2026 21:52:50 GMT
+        - name: content-type
+          value: application/json; charset=utf-8
+        - name: transfer-encoding
+          value: chunked
+        - name: connection
+          value: keep-alive
+        - name: etag
+          value: W/"3ad-03y1/2vHh3gyqbnyz4BsPzjAvCI"
+        - name: vary
+          value: Accept-Encoding
+        - name: set-cookie
+          value: sails.sid=s%3A8Y4whN2BjcKXg5Cunu_30xlvz3WfSHP8.cJbU6YT%2B%2FxDjJRXokKSiceoJHfhau6z1o%2F0gpDdtbC0; Path=/; HttpOnly,__cf_bm=eZt4YU5_d._53Q2xDLn85LYoTk5V.hPRdoShQPa87e8-1769205170-1.0.1.1-UgChFMiGTP5iyAK8.8f9nCl9IcsgE2ouZ9SQ87U7vBTjP4pWdM1dCG1J9h2AyqVji_x4Z__Jze46tX4Jt5kb5O9a90SuvarMpVz.kVRQkzM; path=/; expires=Fri, 23-Jan-26 22:22:50 GMT; domain=.postman-echo.com; HttpOnly; Secure; SameSite=None,_cfuvid=OgtsRWLx4uTI9FZfJe.1WHgzvEq9l7cbHCALqFSLNhA-1769205170869-0.0.1.1-604800000; path=/; domain=.postman-echo.com; HttpOnly; Secure; SameSite=None
+        - name: x-envoy-upstream-service-time
+          value: "6"
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: server
+          value: cloudflare
+        - name: cf-ray
+          value: 9c2a853d39ad5324-IAH
+      body:
+        type: json
+        data: |-
+          {
+            "args": {},
+            "data": {
+              "items": [
+                {
+                  "orderID": "0000001211",
+                  "orderInvoiceNo": "1234567",
+                  "OrderBlocks": [
+                    {
+                      "onlLineId": 1,
+                      "onlProductCode": "001"
+                    },
+                    {
+                      "onlLineId": 2,
+                      "onlProductCode": "012"
+                    },
+                    {
+                      "onlLineId": 3,
+                      "onlProductCode": "013"
+                    },
+                    {
+                      "onlLineId": 4,
+                      "onlProductCode": "014"
+                    }
+                  ]
+                }
+              ]
+            },
+            "files": {},
+            "form": {},
+            "headers": {
+              "host": "www.postman-echo.com",
+              "content-length": "446",
+              "accept-encoding": "gzip, br",
+              "user-agent": "bruno-runtime/3.0.2",
+              "x-forwarded-proto": "https",
+              "content-type": "application/json",
+              "accept": "application/json, text/plain, */*",
+              "request-start-time": "1769205170526",
+              "cookie": "sails.sid=s%3A_HvqWUcKIqE_BqegHJGFt2XsovvrCFX4.AkoMLtGoD1MsDF4w30l%2FcCWKMnftUS120%2BsLSoj%2F8i4"
+            },
+            "json": {
+              "items": [
+                {
+                  "orderID": "0000001211",
+                  "orderInvoiceNo": "1234567",
+                  "OrderBlocks": [
+                    {
+                      "onlLineId": 1,
+                      "onlProductCode": "001"
+                    },
+                    {
+                      "onlLineId": 2,
+                      "onlProductCode": "012"
+                    },
+                    {
+                      "onlLineId": 3,
+                      "onlProductCode": "013"
+                    },
+                    {
+                      "onlLineId": 4,
+                      "onlProductCode": "014"
+                    }
+                  ]
+                }
+              ]
+            },
+            "url": "https://www.postman-echo.com/post"
+          }

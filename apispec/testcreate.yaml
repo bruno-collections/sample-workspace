@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: testcreate
+  version: 1.0.0
+paths:
+  /v1/identify:
+    post:
+      summary: Non Digital Events QA (Identify)
+      operationId: Non Digital Events QA (Identify)
+      description: ''
+      tags:
+        - null
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/non_digital_events_qa_(identify)'
+      security:
+        non_digital_events_qa_(identify): []
+servers:
+  - url: https://api.segment.io
+components:
+  schemas:
+    non_digital_events_prod_(identify):
+      type: object
+      properties:
+        traits:
+          type: object
+          properties:
+            debitCardExpiration:
+              type: string
+            addressLastUpdated:
+              type: string
+            last4acct:
+              type: string
+        type:
+          type: string
+        userId:
+          type: string
+    non_digital_events_qa_(identify):
+      type: object
+      properties:
+        traits:
+          type: object
+          properties:
+            debitCardExpiration:
+              type: string
+            addressLastUpdated:
+              type: string
+            last4acct:
+              type: string
+        type:
+          type: string
+        userId:
+          type: string
+  requestBodies:
+    non_digital_events_prod_(identify):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/non_digital_events_prod_(identify)'
+      description: ''
+      required: true
+    non_digital_events_qa_(identify):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/non_digital_events_qa_(identify)'
+      description: ''
+      required: true
+  securitySchemes:
+    non_digital_events_prod_(identify):
+      type: http
+      scheme: bearer
+    non_digital_events_qa_(identify):
+      type: http
+      scheme: bearer
